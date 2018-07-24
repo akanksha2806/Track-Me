@@ -27,7 +27,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = database_file
 app.config["SQLALCHEMY_DATABASE_URI"] = dbgraph_file
 
 app.config['TESTING'] = False
-app.secret_key = '\xdf\xcd1\x17\x18w2:\xb77,j5\xc8*\xaeb\xe1/U.F\x17\xde'
+app.secret_key = ' '
 dblogin = SQLAlchemy(app)
 dbgraph= SQLAlchemy(app)
 
