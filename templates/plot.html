@@ -1,0 +1,9 @@
+
+{% block content %}
+{%do style.use('ggplot')%}
+{% do plt.plot(labels,values) %}
+{% do plt.title(act) %}
+{% do plt.ylabel('No. of hours') %}
+{% do plt.xlabel('Day') %}
+{% do plt.show() %}
+{% endblock %}

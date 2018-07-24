@@ -1,0 +1,114 @@
+
+<style>
+  .bkg
+  {
+     -webkit-background-size: cover;
+    -moz-background-size: cover;
+   -o-background-size: cover;
+    background-size: cover;
+    background-image: url("http://www.kinyu-z.net/data/wallpapers/49/874902.jpg");
+  }
+  .text
+{
+  
+  color: white;
+  font-size : 25px;
+  font-family: monospace ;
+  position: fixed;
+  top: 210px;
+  right: 900px;
+  left: 20px;
+  bottom:30px;
+  text-align: center;
+  background-color: black;
+  opacity: 0.6;
+  border-color: white;
+}
+
+
+#user
+{
+position: absolute;
+top: 160px;
+left: 40px;
+color: green;
+}
+
+#pass
+{
+position: absolute;
+top: 200px;
+left: 40px;
+color: green;
+}
+#submit
+{
+  position: absolute;
+  top: 330px;
+  left: 60px;
+}
+#acti
+{
+color: green;
+position: absolute;
+top: 240px;
+left:40px;
+}
+h2
+{
+  position: absolute;
+  top:40px;
+  left :38px;
+}
+.flash{
+  color: blue;
+  top: 800px;
+  font-size: 20px;
+
+
+}
+
+</style>
+
+
+<html>
+<head> <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+</head>
+<body class="bkg">
+	
+{% extends "base.html" %}
+{% block content %}
+{% if session['logged_in'] %}
+<p>Already logged in</p>
+{% else %}
+
+<h1 style="font-family: fantasy;"><b>TrackMe</b></h1>
+<h3 style="font-family: cursive;">Helps you maintain the streak!<h3>
+<div class="text">
+  <div class="flash">{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+</div>
+  <h2 style="font-family: lucida handwriting ;color: white;font-size: 44px"  ><u>Register Now</u></h2>
+<form action="/register/" method="POST">
+  <input type="username" name="username" placeholder="Username" id="user">
+  <input type="password" name="password" placeholder="Password" id="pass">
+  <input type="text" name="activity" placeholder="Activity" id="acti">
+  <input type="submit" value="Continue" id="submit" style="width:60%; background-color: green ;border-color: white ;font-family: lucida handwriting; color: white;">
+</form>
+</div>
+{% endif %}
+{% endblock %}
+</body>
+</html>

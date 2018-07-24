@@ -1,0 +1,128 @@
+<style>
+  .bkg
+  {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+   -o-background-size: cover;
+    background-size: cover;
+    background-image: url("http://www.kinyu-z.net/data/wallpapers/49/874902.jpg");
+}
+.text
+{
+  
+  color: white;
+  font-size : 25px;
+  font-family: monospace ;
+  position: fixed;
+  top: 180px;
+  right: 900px;
+  left: 20px;
+  bottom:50px;
+  text-align: center;
+  background-color: black;
+  opacity: 0.6;
+  border-color: white;
+}
+.flash{
+  color: red;
+  top: 800px;
+  font-size: 20px;
+
+
+}
+
+h2
+{
+font-family: Harrington, Calibri ;
+font-size: 30px;
+}
+h3
+{
+  font-family: cursive;
+  color: white ;
+}
+
+h4
+{
+  position: absolute;
+  top: 40px;
+  left: 100px;
+}
+#username
+{
+  position: absolute;
+  top:150px;
+  left:40px;
+  font-family:monospace;
+  color: green
+}
+#pass
+{
+  position: absolute;
+  top:230px;
+  left:40px;
+  color: green;
+}
+
+#submit
+{
+  position: absolute;
+  top : 330px;
+  left:80px;
+  color: black;
+
+}
+/*::placeholder
+{
+  color: black;
+}*/
+
+</style>
+
+<html>
+<head> <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://www.w3schools.com">
+
+</head>
+<body class="bkg">
+ {% extends "base.html" %}
+{% block content %}
+ 
+<h2 style="font-family: fantasy;"><b>TrackMe</b></h2>
+<h3 style="font-family: cursive;">Helps you maintain the streak!<h3>
+
+   
+<div class="text">
+  <h4 style="font-family: lucida handwriting ;color: white;font-size: 42px "><u>Login</u></h4>
+<form action="/login" method="POST" >
+  <input type="text" name="username" id="username" placeholder="Username"  >
+  <input type="password" name="password" id="pass" placeholder="Password">
+  <div class="flash">{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% if session['logged_in']==True %}
+<p>You're logged in already!</p>
+{% else %}
+</div>
+  <input type="submit" id="submit" value="Continue"  class="w3-button w3-green w3-block w3-black" style="width:50%; background-color: green ;border-color: white ;font-family: lucida handwriting; color: white;" >
+</form>
+</div>
+ 
+
+
+{% endif %}
+{% endblock %}
+</body>
+</html>

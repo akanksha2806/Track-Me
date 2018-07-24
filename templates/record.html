@@ -1,0 +1,167 @@
+<html>
+<head>
+  
+  <meta charset="utf-8">
+    <title>Record</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  
+      <link rel="stylesheet" type="text/css" href="https://www.w3schools.com">
+      <link rel="stylesheet" href="static/css/style1.css">
+   
+</head>
+
+<style >
+.loc
+{
+  
+  top: 450px;
+  left: 0px;
+}
+.button {
+    background-color: blue; /* Green */
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-color: white;
+}
+
+.button1 {
+    background-color: black; 
+    color: white;
+    border-color: white; 
+    border-radius: 10px;
+    border: 4px solid #ffffff;
+} 
+.button1:hover {
+    background-color: #004de6;
+    color: white;
+}
+.button3
+{   
+ 
+    
+   
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+   
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-color: white;
+    background-color: black; 
+    color: white;
+    border-radius: 6px;
+    border: 4px solid #ffffff;
+}
+.button3:hover
+{
+  
+    background-color: green;
+    color: white;
+
+}
+.button4
+{   
+ 
+    
+   
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+   
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-color: white;
+    background-color: black; 
+    color: white;
+    border-radius: 6px;
+    border: 4px solid #ffffff;
+}
+.button4:hover
+{
+  
+    background-color: red;
+    color: white;
+
+}
+
+
+
+
+</style>
+
+  <script src='https://cdn.rawgit.com/liabru/matter-js/306dc024/build/matter.min.js'></script>
+<script src='https://cdn.rawgit.com/liabru/matter-wrap/43be2639/build/matter-wrap.min.js'></script>
+<script  src="static/js/index1.js"></script>
+
+<body>
+ <!--<canvas id="bg1"></canvas>
+<canvas id="bg2"></canvas>
+-->
+<p style="color: black; font-style: cursive; font-size: 20px" class="loc"><u>Record so far</u></p>
+
+{% for item in amount %}
+
+    
+     {% if item.name==nme %}
+      <p style="color: black;font-style: cursive;"> Day:{{item.day}} </p>
+   
+
+     <form method="POST" action="/update/{{nme}}">
+    <input type="hidden" value="{{item.day}}" name="dayp">
+   
+    <input type="hidden" value="{{item.hour}}" name="oldhour">
+    <input type="number" value="{{item.hour}}" name="newhour" style="width: 70px; color: black ;border: 2px solid white;border-radius: 8px">
+   
+    <button class="button3 l4">Update</button>
+
+  </form>
+
+      <form method="POST" action="/delete/{{nme}}">
+  <input type="hidden" value="{{item.day}}" name="day">
+  
+     <button class="button4 l4" onclick="return conformbox()">Delete</button>
+ 
+
+</form>
+ {% endif %}
+
+</a>
+{% endfor %}
+
+<script>
+
+
+   function conformbox()
+
+{
+
+var con=confirm("Are you sure want to delete this value ?");
+
+if(con==true)
+{
+return true;
+}
+else
+{
+return false;
+}
+}
+
+</script>
+
+</body>
+</html>

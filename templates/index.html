@@ -1,0 +1,57 @@
+
+<style >
+  h1
+  {
+    color: white;
+  }
+  h2
+  {
+    position: absolute;
+    top: 120px;
+    left: 520px;
+
+  }
+  .log
+  {
+    position: absolute;
+    top:2px;
+    right: 2px;
+  } 
+
+</style>
+
+
+<html>
+
+<body>
+  <head> <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+</head>
+
+
+{% block content %}
+<div><a href="/home">Home Page</a></div>
+{% if session['logged_in'] %}
+  <div class="black-box">
+    {% if nme %}
+   <h1 style="font-family: cursive;color: white;"><b>Welcome</b></h1>
+   <h2 style="font-family: monospace;color: white; font-size: 40px; top: 90px;"><b>{{nme}}!</b></h2>
+   {% endif %}
+	</div>
+	<a href="/logout"><img src="https://laraveldaily.com/wp-content/uploads/2018/01/logout.png" width="200px" height="80px" class="log"></a> <br> <br>
+	
+
+{% else %}
+<p>Not logged in!</p>
+
+<a href="/login">Login</a> 
+<a href="/register">Register</a>
+
+{% endif %}
+{% endblock %}
+</body>
+</html>

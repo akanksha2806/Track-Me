@@ -1,0 +1,206 @@
+<style>
+.button {
+    background-color: blue; /* Green */
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-color: white;
+}
+
+.button1 {
+    background-color: black; 
+    color: white;
+    border-color: white; 
+    border-radius: 10px;
+    border: 4px solid #ffffff;
+} 
+.button1:hover {
+    background-color: #004de6;
+    color: white;
+}
+.button3
+{   
+ 
+    
+   
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+   
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-color: white;
+    background-color: black; 
+    color: white;
+    border-radius: 6px;
+    border: 4px solid #ffffff;
+}
+.button3:hover
+{
+  
+    background-color: green;
+    color: white;
+
+}
+.button4
+{   
+ 
+    
+   
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+   
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-color: white;
+    background-color: black; 
+    color: white;
+    border-radius: 6px;
+    border: 4px solid #ffffff;
+}
+.button4:hover
+{
+  
+    background-color: red;
+    color: white;
+
+}
+.l1
+{
+position: absolute;
+top: 460px;
+left:330px;
+}
+.l2
+{
+position: absolute;
+top: 460px;
+left: 300px;
+}
+.l3
+{
+position: absolute;
+top: 460px;
+right: 550px;
+}
+.l4
+{
+position: absolute;
+top: 460px;
+right: 350px;
+}
+.loc
+{
+  position: absolute;
+  top: 450px;
+  left: 0px;
+}
+h1
+  {
+    color: white;
+  }
+  h2
+  {
+    position: absolute;
+    top: 120px;
+    left: 520px;
+
+  }
+  .log
+  {
+    position: absolute;
+    top:2px;
+    right: 2px;
+  } 
+</style>
+<html>
+
+
+  <head> <meta charset="utf-8">
+    <title>Let's Track</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+  
+      <link rel="stylesheet" type="text/css" href="https://www.w3schools.com">
+      <link rel="stylesheet" href="static/css/style1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="wrapper" >
+  
+
+{% block content %}
+<div><a href="/home">Home Page</a></div>
+
+{% if session['logged_in'] %}
+  <div class="black-box">
+    {% if nme %}
+   <h1 style="font-family: cursive;color: white;"><b>Welcome</b></h1>
+   <h2 style="font-family: monospace;color: white; font-size: 40px; top: 90px;"><b>{{nme}}!</b></h2>
+   {% endif %}
+  </div>
+  <a href="/logout"><img src="https://laraveldaily.com/wp-content/uploads/2018/01/logout.png" width="200px" height="80px" class="log"></a> <br> <br>
+  
+
+{% else %}
+<p>Not logged in!</p>
+{% endif %}
+
+<canvas id="bg1"></canvas>
+<canvas id="bg2"></canvas>
+  <script src='https://cdn.rawgit.com/liabru/matter-js/306dc024/build/matter.min.js'></script>
+<script src='https://cdn.rawgit.com/liabru/matter-wrap/43be2639/build/matter-wrap.min.js'></script>
+<script  src="static/js/index1.js"></script>
+
+<div  >
+  <h1 style="color: white;font-family: monotype corosiva; font-size: 30px">Enter today's results&nbsp; <strong>({{activity}})</strong></h1>
+	<form method="POST" action="./{{nme}}">
+   <pre><div style="font-size: 20px; color: white; font-family: cursive;">Day              Hours</pre>
+		<b><input type="number" name="day" value="{{lday+1}}" min="1" style="width: 100px";></b>
+    
+    <input type="number" name="hour" min="0" value="0" style="width: 70px;">
+		<input type="submit" value="Add" style="width: 70px;background-color: black; color: white;font-family: cursive;">
+    <br></br>
+    <h6 style="color: #a8a8a8;">(Activity Last tracked for day <b>{{lday}}</b>)</h6>
+
+	</form>
+  <br>
+</div>
+
+<div>
+
+ <a href="./line/{{activity}}"><button class="button1 button l2">Performance Graph</button></a>
+   <a href="/stats/{{activity}}"><button class="button1 button l3">View Statistics</button></a>
+   <a href="/record/{{nme}}/{{activity}}"><button class="button1 button l4">View Record</button></a>
+  </div> 
+
+        {% for item in amount %}
+          {% if item.name==nme %}
+          
+          {% do labels.append(item.day) %}
+          {% do values.append(item.hour) %}
+          {% endif %}
+        {% endfor %}     
+
+{% endblock %}
+
+</body>
+</html>
